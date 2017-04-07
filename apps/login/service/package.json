@@ -1,0 +1,14 @@
+{
+  "name": "@days-off/login-service",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Simon Relet",
+  "license": "MIT",
+  "scripts": {
+    "start": "SERVICE_PORT=3001 node ."
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
