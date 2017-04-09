@@ -1,0 +1,23 @@
+{
+  "name": "@days-off/app-utils",
+  "version": "0.1.0",
+  "author": "Simon Relet",
+  "private": true,
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^3.19.0",
+    "eslint-config-react-app": "^0.6.2",
+    "flow-bin": "^0.43.1",
+    "flow-typed": "^2.0.0",
+    "prettier": "^0.22.0"
+  },
+  "scripts": {
+    "build": "babel -d build lib",
+    "check": "eslint src && flow",
+    "format": "prettier --write --single-quote --trailing-comma all --parser flow 'lib/**/*.js'",
+    "postinstall": "flow-typed install"
+  }
+}
