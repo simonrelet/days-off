@@ -1,0 +1,27 @@
+.Button {
+  background-color: #2196f4;
+  border: 2px solid transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: inherit;
+  padding: .6rem 1rem;
+}
+
+.Button:hover:not(:disabled) {
+  background-color: #40a3f2;
+}
+
+.Button:disabled {
+  cursor: auto;
+  opacity: 0.3;
+}
+
+.Button:focus {
+  border-color: #68b5f2;
+  outline: 0;
+}
+
+.Button:active {
+  background-color: #14609e;
+  border-color: transparent;
+}

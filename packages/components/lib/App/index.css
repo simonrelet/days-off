@@ -1,0 +1,43 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  color: #333;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  align-items: stretch;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+.App > :first-child {
+  flex: 1;
+}
+
+.App__footer {
+  border-top: 1px solid #ccc;
+  color: #aaa;
+  text-align: right;
+  padding: .6rem 1rem;
+  font-size: 1.2rem;
+}

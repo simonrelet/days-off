@@ -1,0 +1,11 @@
+.Block {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+}
+
+.Block__title {
+  font-weight: normal;
+  text-align: center;
+}
