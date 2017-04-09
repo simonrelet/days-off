@@ -1,0 +1,29 @@
+{
+  "name": "@days-off/days-off-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@days-off/common": "file:../../../packages/common/build/",
+    "@days-off/components": "file:../../../packages/components/build/",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "flow-bin": "^0.43.1",
+    "flow-typed": "^2.0.0",
+    "prettier": "^0.22.0",
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "check": "eslint src && flow",
+    "eject": "react-scripts eject",
+    "format": "prettier --write --single-quote --trailing-comma all --parser flow 'src/**/*.js'",
+    "postinstall": "flow-typed install",
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom"
+  },
+  "homepage": ".",
+  "proxy": "http://localhost:3001/"
+}
