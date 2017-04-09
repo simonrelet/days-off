@@ -1,0 +1,26 @@
+.Login {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.Login__layout {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.Login__block {
+  width: 31rem;
+}
+
+.Login__layout > *:not(:first-child) {
+  margin-top: .7rem;
+}
+
+.Login__error-message {
+  color: #b83535;
+  text-align: center;
+  padding: .6rem 1rem;
+}

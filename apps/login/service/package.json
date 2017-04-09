@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "index.js",
   "author": "Simon Relet",
-  "license": "MIT",
+  "private": true,
   "scripts": {
     "start": "SERVICE_PORT=3001 node ."
   },

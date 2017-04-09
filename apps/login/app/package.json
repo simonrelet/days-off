@@ -1,8 +1,13 @@
 {
   "name": "@days-off/login-app",
   "version": "0.1.0",
+  "author": "Simon Relet",
   "private": true,
   "dependencies": {
+    "@days-off/app-utils": "file:../../../packages/app-utils/",
+    "@days-off/components": "file:../../../packages/components/",
+    "axios": "^0.16.0",
+    "qs": "^6.4.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
@@ -22,5 +27,6 @@
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   },
-  "proxy": "http://localhost:3001"
+  "homepage": ".",
+  "proxy": "http://localhost:3001/"
 }
