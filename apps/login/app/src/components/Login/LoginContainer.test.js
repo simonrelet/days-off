@@ -6,5 +6,5 @@ import LoginContainer from './LoginContainer';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<LoginContainer />, div);
+  ReactDOM.render(<LoginContainer caller="app" />, div);
 });

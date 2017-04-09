@@ -1,12 +1,15 @@
 // @flow
 
 import React, { Component } from 'react';
-import screman from '@days-off/app-utils/build/screman';
-import auth from '@days-off/app-utils/build/auth';
+import auth from '@days-off/common/auth';
 import model from './model';
 import LoginView from './LoginView';
 
 export default class LoginContainer extends Component {
+  props: {
+    caller: string,
+  };
+
   state: {
     errorMessage: string,
     password: string,
@@ -26,7 +29,7 @@ export default class LoginContainer extends Component {
       model
         .login({ username, password })
         .then(token => {
-          auth.login({ username, token, redirectAppId: this.getCaller() });
+          auth.login({ username, token, redirectAppId: this.props.caller });
         })
         .catch(({ message }) => {
           this.setState(() => ({ errorMessage: message }));
@@ -43,18 +46,9 @@ export default class LoginContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    screman.init('login');
-    auth.ensureNotLoggedIn(this.getCaller());
-  }
-
   canSubmit() {
     const { username, password } = this.state;
     return !!username && !!password;
-  }
-
-  getCaller() {
-    return screman.getCaller() || 'navigation';
   }
 
   render() {

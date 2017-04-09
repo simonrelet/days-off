@@ -1,11 +1,10 @@
 // @flow
 
 import React from 'react';
-import App from '@days-off/components/build/App';
-import Block from '@days-off/components/build/Block';
-import Button from '@days-off/components/build/Button';
-import Input from '@days-off/components/build/Input';
-import Message from '@days-off/components/build/Message';
+import Block from '@days-off/components/Block';
+import Button from '@days-off/components/Button';
+import Input from '@days-off/components/Input';
+import Message from '@days-off/components/Message';
 import './index.css';
 
 type Props = {
@@ -28,32 +27,28 @@ export default function LoginView(props: Props) {
   } = props;
 
   return (
-    <App version="0.1.0">
-      <div className="Login">
-        <Block className="Login__block" title="Login">
-          <form className="Login__layout" onSubmit={onSubmit}>
-            <Input
-              autoFocus
-              id="username"
-              placeholder="Username"
-              value={username}
-              onChange={onChange}
-            />
-            <Input
-              password
-              id="password"
-              placeholder="Password"
-              value={password}
-              onChange={onChange}
-            />
-            <Button disabled={!canSubmit}>Submit</Button>
-            {errorMessage
-              ? <Message type="error">{errorMessage}</Message>
-              : null}
-          </form>
-        </Block>
-      </div>
-    </App>
+    <div className="Login">
+      <Block className="Login__block" title="Login">
+        <form className="Login__layout" onSubmit={onSubmit}>
+          <Input
+            autoFocus
+            id="username"
+            placeholder="Username"
+            value={username}
+            onChange={onChange}
+          />
+          <Input
+            password
+            id="password"
+            placeholder="Password"
+            value={password}
+            onChange={onChange}
+          />
+          <Button disabled={!canSubmit}>Submit</Button>
+          {errorMessage ? <Message type="error">{errorMessage}</Message> : null}
+        </form>
+      </Block>
+    </div>
   );
 }
 

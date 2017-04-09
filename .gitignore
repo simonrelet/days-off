@@ -1,6 +1,6 @@
 # Logs
 logs
-*.log
+*.log*
 npm-debug.log*
 
 # Runtime data
@@ -24,6 +24,7 @@ coverage
 .lock-wscript
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
+build
 build/Release
 
 # Dependency directories
@@ -36,3 +37,7 @@ flow-typed
 
 # Optional REPL history
 .node_repl_history
+
+# Misc
+.DS_Store
+.env

@@ -4,12 +4,12 @@
   "author": "Simon Relet",
   "private": true,
   "dependencies": {
-    "@days-off/app-utils": "file:../../../packages/app-utils/",
-    "@days-off/components": "file:../../../packages/components/",
+    "@days-off/common": "file:../../../packages/common/build/",
+    "@days-off/components": "file:../../../packages/components/build/",
     "axios": "^0.16.0",
     "qs": "^6.4.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

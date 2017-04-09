@@ -18,8 +18,9 @@
   "scripts": {
     "build": "babel -d build lib",
     "check": "eslint src && flow",
+    "clean": "rm -rf build",
     "format": "prettier --write --single-quote --trailing-comma all --parser flow 'lib/**/*.js'",
-    "postbuild": "cat lib/**/*.css > build/style.css",
+    "prebuild": "mkdir -p build && cp package.json build/ && cat lib/**/*.css > build/style.css",
     "postinstall": "flow-typed install"
   },
   "dependencies": {
