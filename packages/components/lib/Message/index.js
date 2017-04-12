@@ -4,7 +4,7 @@ import React from 'react';
 import Icon from '../Icon';
 
 type Props = {
-  children?: any,
+  children?: mixed,
   type: string,
 };
 
@@ -12,7 +12,7 @@ export default function Message({ children, type }: Props) {
   const classNames = `Message Message--${type}`;
   return (
     <div className={classNames}>
-      <Icon className="Message__icon" name={type} />
+      <Icon left name={type} />
       {children}
     </div>
   );

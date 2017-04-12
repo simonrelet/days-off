@@ -1,6 +1,15 @@
 .Icon {
   display: inline-block;
   fill: currentColor;
-  height: 2.4rem;
-  width: 2.4rem;
+  height: 1.6rem;
+  vertical-align: text-top;
+  width: 1.6rem;
+}
+
+.Icon--left {
+  margin-right: .6rem;
+}
+
+.Button .Icon {
+  vertical-align: text-bottom;
 }

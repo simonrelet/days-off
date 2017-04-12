@@ -20,10 +20,12 @@
     "check": "eslint src && flow",
     "clean": "rm -rf build",
     "format": "prettier --write --single-quote --trailing-comma all --parser flow 'lib/**/*.js'",
-    "prebuild": "mkdir -p build && cp package.json build/ && cat lib/**/*.css > build/style.css",
+    "prebuild": "mkdir -p build && cat package.json | sed -E 's#file:\\.\\./#file:../../#g' > build/package.json && cat lib/**/*.css > build/style.css",
     "postinstall": "flow-typed install"
   },
   "dependencies": {
+    "@days-off/common": "file:../common/build/",
+    "classnames": "^2.2.5",
     "react": "^15.5.3"
   }
 }

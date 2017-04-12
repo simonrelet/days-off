@@ -4,6 +4,7 @@ import React from 'react';
 import Block from '@days-off/components/Block';
 import Button from '@days-off/components/Button';
 import Input from '@days-off/components/Input';
+import Layout from '@days-off/components/Layout';
 import Message from '@days-off/components/Message';
 import './index.css';
 
@@ -27,28 +28,36 @@ export default function LoginView(props: Props) {
   } = props;
 
   return (
-    <div className="Login">
+    <Layout alignment="center" packing="middle">
       <Block className="Login__block" title="Login">
-        <form className="Login__layout" onSubmit={onSubmit}>
-          <Input
-            autoFocus
-            id="username"
-            placeholder="Username"
-            value={username}
-            onChange={onChange}
-          />
-          <Input
-            password
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={onChange}
-          />
-          <Button disabled={!canSubmit}>Submit</Button>
-          {errorMessage ? <Message type="error">{errorMessage}</Message> : null}
+        <form onSubmit={onSubmit}>
+          <Layout
+            alignment="stretch"
+            className="Login__layout"
+            direction="vertical"
+          >
+            <Input
+              autoFocus
+              id="username"
+              placeholder="Username"
+              value={username}
+              onChange={onChange}
+            />
+            <Input
+              password
+              id="password"
+              placeholder="Password"
+              value={password}
+              onChange={onChange}
+            />
+            <Button disabled={!canSubmit}>Submit</Button>
+            {errorMessage
+              ? <Message type="error">{errorMessage}</Message>
+              : null}
+          </Layout>
         </form>
       </Block>
-    </div>
+    </Layout>
   );
 }
 

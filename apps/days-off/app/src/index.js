@@ -11,8 +11,13 @@ import '@days-off/components/style.css';
 screman.init('days-off');
 auth.ensureLoggedIn();
 
+const app = {
+  icon: 'calendar',
+  name: 'Days off',
+};
+
 ReactDOM.render(
-  <App version="0.1.0">
+  <App app={app} version="0.1.0">
     <Root />
   </App>,
   document.getElementById('root'),

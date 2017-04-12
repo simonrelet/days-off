@@ -1,17 +1,16 @@
 // @flow
 
 import React from 'react';
-
-const CLASS_NAME = 'Block';
+import classnames from 'classnames';
 
 type Props = {
   className?: string,
-  children?: any,
+  children?: mixed,
   title?: string,
 };
 
 export default function Block({ children, className, title, ...props }: Props) {
-  const classNames = className ? `${CLASS_NAME} ${className}` : CLASS_NAME;
+  const classNames = classnames('Block', className);
   return (
     <div {...props} className={classNames}>
       {title ? <h1 className="Block__title">{title}</h1> : null}

@@ -1,15 +1,7 @@
 .Message {
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
   padding: .6rem 1rem;
 }
 
 .Message--error {
-  color: #b83535;
-}
-
-.Message__icon {
-  flex-shrink: 0;
-  margin-right: 1rem;
+  color: #f44336;
 }

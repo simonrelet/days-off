@@ -1,12 +1,20 @@
 // @flow
 
 import React from 'react';
+import classnames from 'classnames';
 
-type Props = { children?: any };
+type Props = {
+  children?: mixed,
+  small?: boolean,
+};
 
-export default function Button({ children, ...props }: Props) {
+export default function Button({ children, small, ...props }: Props) {
+  const classNames = classnames('Button', 'Button--default', {
+    'Button--small': small,
+  });
+
   return (
-    <button {...props} className="Button">
+    <button {...props} className={classNames}>
       {children}
     </button>
   );

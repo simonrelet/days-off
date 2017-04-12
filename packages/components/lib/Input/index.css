@@ -1,14 +1,16 @@
 .Input {
   background-color: #f8f8f8;
-  border: 2px solid transparent;
+  border: none;
+  border-radius: .2rem;
   font-size: inherit;
-  padding: .6rem 1rem;
+  padding: .8rem 1.2rem;
+  outline: none;
   text-align: center;
 }
 
+.Input:hover,
 .Input:focus {
-  border-color: #2196f4;
-  outline: none;
+  background-color: #f0f0f0;
 }
 
 .Input::placeholder {

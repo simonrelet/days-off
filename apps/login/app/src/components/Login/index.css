@@ -1,16 +1,3 @@
-.Login {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-.Login__layout {
-  align-items: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
 .Login__block {
   width: 31rem;
 }
