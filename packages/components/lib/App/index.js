@@ -2,6 +2,7 @@
 
 import React from 'react';
 import auth from '@days-off/common/auth';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from '../Header';
 import Layout, { LayoutItem } from '../Layout';
 
@@ -14,13 +15,15 @@ type Props = {
 export default function App({ app, children, version }: Props) {
   const username = auth.getUserName();
   return (
-    <Layout direction="vertical" className="App">
-      {app ? <Header app={app} username={username} /> : null}
-      <LayoutItem weight={1}>
-        {children}
-      </LayoutItem>
-      <div className="App__footer">{version}</div>
-    </Layout>
+    <MuiThemeProvider>
+      <Layout direction="vertical" className="App">
+        {app ? <Header app={app} username={username} /> : null}
+        <LayoutItem weight={1}>
+          {children}
+        </LayoutItem>
+        <div className="App__footer">{version}</div>
+      </Layout>
+    </MuiThemeProvider>
   );
 }
 

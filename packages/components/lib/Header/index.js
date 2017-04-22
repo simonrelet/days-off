@@ -2,6 +2,7 @@
 
 import React from 'react';
 import auth from '@days-off/common/auth';
+import FlatButton from 'material-ui/FlatButton';
 import Button from '../Button';
 import Icon from '../Icon';
 import Layout from '../Layout';
@@ -19,10 +20,11 @@ export default function Header({ app, username }: Props) {
       </div>
       <Layout alignment="baseline" className="Header__right">
         <div><Icon left name="user" />{username}</div>
-        <Button small onClick={() => auth.logout()}>
-          <Icon left name="logout" />
-          Log out
-        </Button>
+        <FlatButton
+          icon={<Icon left name="logout" />}
+          label="Log out"
+          onClick={() => auth.logout()}
+        />
       </Layout>
     </Layout>
   );

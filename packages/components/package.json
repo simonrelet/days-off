@@ -4,6 +4,8 @@
   "author": "Simon Relet",
   "private": true,
   "devDependencies": {
+    "@kadira/storybook": "^2.35.3",
+    "@kadira/storybook-addon-knobs": "^1.7.1",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
@@ -11,21 +13,28 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-react-app": "^0.6.2",
-    "flow-bin": "^0.43.1",
+    "flow-bin": "^0.44.0",
     "flow-typed": "^2.0.0",
-    "prettier": "^0.22.0"
+    "prettier": "^1.1.0",
+    "react-dom": "^15.5.4",
+    "storybook": "^0.0.0",
+    "storybook-host": "^1.0.14"
   },
   "scripts": {
     "build": "babel -d build lib",
+    "build-release": "yarn run build",
     "check": "eslint src && flow",
     "clean": "rm -rf build",
     "format": "prettier --write --single-quote --trailing-comma all --parser flow 'lib/**/*.js'",
-    "prebuild": "mkdir -p build && cat package.json | sed -E 's#file:\\.\\./#file:../../#g' > build/package.json && cat lib/**/*.css > build/style.css",
-    "postinstall": "flow-typed install"
+    "prebuild": "mkdir -p build && cat lib/**/*.css > build/style.css",
+    "prebuild-release": "mkdir -p build && cat package.json | sed -E 's#file:\\.\\./#file:../../#g' > build/package.json",
+    "postinstall": "flow-typed install",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "dependencies": {
     "@days-off/common": "file:../common/build/",
     "classnames": "^2.2.5",
-    "react": "^15.5.3"
+    "material-ui": "^0.17.4",
+    "react": "^15.5.4"
   }
 }

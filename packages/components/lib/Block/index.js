@@ -2,6 +2,7 @@
 
 import React from 'react';
 import classnames from 'classnames';
+import Paper from 'material-ui/Paper';
 
 type Props = {
   className?: string,
@@ -12,10 +13,12 @@ type Props = {
 export default function Block({ children, className, title, ...props }: Props) {
   const classNames = classnames('Block', className);
   return (
-    <div {...props} className={classNames}>
-      {title ? <h1 className="Block__title">{title}</h1> : null}
-      {children}
-    </div>
+    <Paper zDepth={1}>
+      <div {...props} className={classNames}>
+        {title ? <h1 className="Block__title">{title}</h1> : null}
+        {children}
+      </div>
+    </Paper>
   );
 }
 

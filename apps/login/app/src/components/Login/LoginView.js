@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import Block from '@days-off/components/Block';
-import Button from '@days-off/components/Button';
 import Input from '@days-off/components/Input';
 import Layout from '@days-off/components/Layout';
 import Message from '@days-off/components/Message';
@@ -38,19 +38,26 @@ export default function LoginView(props: Props) {
           >
             <Input
               autoFocus
+              fullWidth
               id="username"
-              placeholder="Username"
+              floatingLabelText="Username"
               value={username}
               onChange={onChange}
             />
             <Input
               password
+              fullWidth
               id="password"
-              placeholder="Password"
+              floatingLabelText="Password"
               value={password}
               onChange={onChange}
             />
-            <Button disabled={!canSubmit}>Submit</Button>
+            <RaisedButton
+              primary
+              fullWidth
+              disabled={!canSubmit}
+              label="Submit"
+            />
             {errorMessage
               ? <Message type="error">{errorMessage}</Message>
               : null}

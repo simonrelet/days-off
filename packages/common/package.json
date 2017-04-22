@@ -10,9 +10,9 @@
     "babel-preset-flow": "^6.23.0",
     "eslint": "^3.19.0",
     "eslint-config-react-app": "^0.6.2",
-    "flow-bin": "^0.43.1",
+    "flow-bin": "^0.44.0",
     "flow-typed": "^2.0.0",
-    "prettier": "^0.22.0"
+    "prettier": "^1.1.0"
   },
   "scripts": {
     "build": "babel -d build lib",

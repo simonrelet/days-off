@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import TextField from 'material-ui/TextField';
 
 type Props = {
   id: string,
@@ -11,13 +12,7 @@ type Props = {
 export default function Input({ id, password, onChange, ...props }: Props) {
   const type = !!password ? 'password' : 'text';
   return (
-    <input
-      {...props}
-      className="Input"
-      id={id}
-      type={type}
-      onChange={e => onChange(e, id)}
-    />
+    <TextField {...props} id={id} type={type} onChange={e => onChange(e, id)} />
   );
 }
 

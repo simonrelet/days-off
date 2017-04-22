@@ -4,18 +4,20 @@
   "author": "Simon Relet",
   "private": true,
   "dependencies": {
-    "@days-off/common": "file:../../../packages/common/build/",
-    "@days-off/components": "file:../../../packages/components/build/",
+    "@days-off/common": "file:../../../packages/common/build",
+    "@days-off/components": "file:../../../packages/components/build",
     "axios": "^0.16.0",
+    "material-ui": "^0.17.4",
     "qs": "^6.4.0",
     "react": "^15.5.3",
-    "react-dom": "^15.5.3"
+    "react-dom": "^15.5.3",
+    "react-tap-event-plugin": "^2.0.1"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
-    "flow-bin": "^0.43.1",
+    "flow-bin": "^0.44.0",
     "flow-typed": "^2.0.0",
-    "prettier": "^0.22.0",
+    "prettier": "^1.1.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {

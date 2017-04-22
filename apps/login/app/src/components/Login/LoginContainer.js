@@ -17,8 +17,7 @@ export default class LoginContainer extends Component {
   };
 
   handleChange = (event: SyntheticInputEvent, inputName: string) => {
-    const newValue: string = event.target.value;
-    this.setState(() => ({ [inputName]: newValue, errorMessage: '' }));
+    this.setState({ [inputName]: event.target.value, errorMessage: '' });
   };
 
   handleSubmit = (event: Event) => {
