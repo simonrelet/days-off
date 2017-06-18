@@ -1,0 +1,40 @@
+{
+  "roles": {
+    "1": "developer"
+  },
+  "creditsTypes": {
+    "1": "rtt",
+    "2": "dayed-leaves",
+    "3": "sick"
+  },
+  "users": {
+    "1": {
+      "firstname": "Simon",
+      "lastname": "Relet",
+      "teamId": "1",
+      "credits": {
+        "total": {
+          "rtt": 20,
+          "dayed-leaves": 10,
+          "sick": 1
+        },
+        "used": {
+          "rtt": 0,
+          "dayed-leaves": 0,
+          "sick": 0
+        }
+      }
+    }
+  },
+  "teams": {
+    "1": {
+      "name": "Front-End",
+      "members": [
+        {
+          "userId": "1",
+          "roleId": "1"
+        }
+      ]
+    }
+  }
+}

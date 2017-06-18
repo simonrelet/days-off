@@ -1,0 +1,44 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Header {
+  background-color: #2196f3;
+  color: white;
+  display: flex;
+}
+
+.Header-left {
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  padding: 20px 30px;
+  text-align: center;
+  width: 250px;
+  font-size: 20px;
+}
+
+.Header-right {
+  flex: auto;
+  overflow: auto;
+  padding: 20px 30px;
+}
+
+.Content {
+  display: flex;
+  flex: auto;
+  overflow-y: auto;
+}
+
+.Menu {
+  background-color: #424242;
+  overflow: auto;
+  padding: 10px 20px;
+  width: 250px;
+}
+
+.Content-body {
+  flex: auto;
+  overflow: auto;
+}

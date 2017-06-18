@@ -1,0 +1,64 @@
+.Calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Calendar > .month {
+  text-align: center;
+  padding: 10px;
+}
+
+.Calendar > .header, .Calendar > .week {
+  display: flex;
+  justify-content: center;
+}
+
+.Calendar .block-wrapper {
+}
+
+.Calendar .block {
+  align-items: center;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  /*user-select: none;*/
+  width: 36px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.Calendar .block.day {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  pointer-events: none;
+}
+
+.Calendar .block.today {
+  font-weight: bold;
+  color: black;
+}
+
+.Calendar .block-wrapper .split {
+  align-items: stretch;
+  display: flex;
+  height: 36px;
+  width: 36px;
+}
+
+.Calendar .block-wrapper .split .part {
+  cursor: pointer;
+  flex: 1;
+}
+
+.Calendar .block-wrapper .split .part:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.Calendar .block-wrapper .split .part.selected {
+  background-color: #BBDEFB;
+}
+
+.Calendar .block-wrapper .split .part.selected:hover {
+  background-color: #a2c1da;
+}

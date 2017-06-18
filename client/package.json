@@ -1,0 +1,27 @@
+{
+  "name": "@simonrelet/days-off",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "react-scripts build",
+    "check": "eslint src && flow",
+    "format": "prettier --write --single-quote --trailing-comma all --parser flow 'src/**/*.js'",
+    "postinstall": "flow-typed install",
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom"
+  },
+  "proxy": "http://localhost:3001",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.17.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "flow-bin": "^0.48.0",
+    "flow-typed": "^2.1.2",
+    "prettier": "^1.5.2",
+    "react-scripts": "1.0.7"
+  }
+}
