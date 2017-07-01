@@ -1,6 +1,5 @@
-const express = require('express');
-const path = require('path');
-const db = require('../db');
+import express from 'express';
+import db from '../db';
 
 const router = express.Router();
 
@@ -12,4 +11,4 @@ router.get('/team/:id/', (req, res, next) => {
   res.json(db.getTeam(req.params.id));
 });
 
-module.exports = router;
+export default router;

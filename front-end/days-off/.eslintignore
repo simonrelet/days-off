@@ -1,0 +1,5 @@
+# /node_modules/* ignored by default
+flow-typed
+
+# avoid prettier to format them
+*.json

@@ -1,3 +1,6 @@
 # /node_modules/* ignored by default
 flow-typed
+build
+
+# avoid prettier to format them
 *.json
