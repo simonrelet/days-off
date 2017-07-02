@@ -2,21 +2,24 @@
 set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
 pushd "$SCRIPT_DIR" > /dev/null 2>&1
 source utils.sh
 popd > /dev/null 2>&1
 
-main ()
-{
-  local clean_type="${1-normal}"
+pushd "$ROOT_DIR" > /dev/null 2>&1
+print_bold "clean start"
 
-  rm -rf build
-  yarn_run_in back-end clean
+print_info "Cleaning $(get_package_name .)..."
+rm -rf build node_modules
 
-  [ "$clean_type" == "dist" ] && {
-    rm -f "$SCRIPT_DIR"/*.log
-  }
-}
+for pkg in front-end/*; do
+  pushd "$pkg" > /dev/null 2>&1
+  print_info "Cleaning $(get_package_name .)..."
+  yarn run clean
+  popd > /dev/null 2>&1
+done
 
-main "$@"
+print_bold "clean end"
+popd > /dev/null 2>&1

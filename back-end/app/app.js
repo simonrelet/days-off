@@ -1,11 +1,13 @@
+// @flow
 import express from 'express';
 import path from 'path';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import routes from './routes';
+import api from './routes/api';
+import applications from './routes/applications';
 
-const app = express();
+const app: any = express();
 const development = !!process.env.DEVELOPMENT;
 
 app.use(logger(development ? 'dev' : 'combined'));
@@ -16,19 +18,18 @@ app.use(cookieParser());
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'apps')));
 
-app.use('/api', routes);
+app.use('/api', api);
 
-app.get('*', (req, res) => {
-  if (development) {
-    res.send('Tere are no static assets in a development environment');
-  } else {
-    res.sendFile(path.join(__dirname, 'apps', 'days-off', 'index.html'));
-  }
-});
+const applicationsRoutes = development
+  ? (req, res) => {
+      res.send('There are no static assets in a development environment.');
+    }
+  : applications;
+app.use('*', applicationsRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err: any = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -37,11 +38,10 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = development ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('404 Not found');
 });
 
 export default app;

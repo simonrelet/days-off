@@ -1,26 +1,24 @@
 #! /bin/bash
-set -uo pipefail
+set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(dirname "$SCRIPT_DIR")"
-LOG_STDOUT="$SCRIPT_DIR/stdout.log"
-LOG_STDERR="$SCRIPT_DIR/stderr.log"
-
-yarn_run_in ()
+in_ci ()
 {
-  local folder="$1"
-  shift
-  local exit_code
+  [ -z "${CI+x}" ] || return 0
+  return 1
+}
 
-  pushd "$ROOT_DIR/$folder" > /dev/null 2>&1
+print_bold ()
+{
+  in_ci && printf "%s\n" "$1" || printf "\e[1m%s\e[0m\n" "$1"
+}
 
-  yarn run "$@" > "$LOG_STDOUT" 2> "$LOG_STDERR"
-  exit_code=$?
-  [ $exit_code -eq 0 ] || {
-    printf "$ yarn run %s\n" "$@" >&2
-    cat "$LOG_STDERR" >&2
-    exit $exit_code
-  }
+print_info ()
+{
+  in_ci && printf "info %s\n" "$1" || printf "\e[34minfo\e[0m %s\n" "$1"
+}
 
-  popd > /dev/null 2>&1
+get_package_name ()
+{
+  local folder="${1%/}/package.json"
+  cat "$folder" | sed -n -E 's/.*"name".*:.*"(.*)".*/\1/p'
 }
