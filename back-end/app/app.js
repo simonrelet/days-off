@@ -25,7 +25,7 @@ const applicationsRoutes = development
       res.send('There are no static assets in a development environment.');
     }
   : applications;
-app.use('*', applicationsRoutes);
+app.get('*', applicationsRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -8,7 +8,7 @@
     "3": "sick"
   },
   "users": {
-    "1": {
+    "simonrelet": {
       "firstname": "Simon",
       "lastname": "Relet",
       "teamId": "1",
@@ -31,7 +31,7 @@
       "name": "Front-End",
       "members": [
         {
-          "userId": "1",
+          "userId": "simonrelet",
           "roleId": "1"
         }
       ]
