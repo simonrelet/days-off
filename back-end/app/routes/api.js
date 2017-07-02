@@ -25,8 +25,9 @@ router.use((req, res, next) => {
   }
 });
 
-router.get('/user/:id', (req, res) => {
-  res.json(db.getUser(req.params.id));
+router.get('/user', (req, res) => {
+  const token = req.cookies['id_token'];
+  res.json(db.getUser(token.replace(/^TOKEN-FOR-/, '')));
 });
 
 router.get('/team/:id/', (req, res) => {

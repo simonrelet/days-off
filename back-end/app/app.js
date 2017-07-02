@@ -8,16 +8,15 @@ import login from './routes/login';
 import daysOff from './routes/days-off';
 
 const app: any = express();
-const development = !!process.env.DEVELOPMENT;
 
-app.use(logger(development ? 'dev' : 'combined'));
+app.use(logger(!!process.env.DEVELOPMENT ? 'dev' : 'combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api', api);
 
-if (development) {
+if (!!process.env.DEVELOPMENT) {
   app.use('*', (req, res) => {
     res.send('There are no static assets in a development environment.');
   });
@@ -37,7 +36,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = development ? err : {};
+  res.locals.error = !!process.env.DEVELOPMENT ? err : {};
 
   res.status(err.status || 500);
   res.send('404 Not found');
