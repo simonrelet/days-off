@@ -1,11 +1,11 @@
 // @flow
 import express from 'express';
-import path from 'path';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import api from './routes/api';
-import applications from './routes/applications';
+import login from './routes/login';
+import daysOff from './routes/days-off';
 
 const app: any = express();
 const development = !!process.env.DEVELOPMENT;
@@ -15,17 +15,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'apps')));
-
 app.use('/api', api);
 
-const applicationsRoutes = development
-  ? (req, res) => {
-      res.send('There are no static assets in a development environment.');
-    }
-  : applications;
-app.get('*', applicationsRoutes);
+if (development) {
+  app.use('*', (req, res) => {
+    res.send('There are no static assets in a development environment.');
+  });
+} else {
+  app.use('/login', login);
+  app.use('/days-off', daysOff);
+}
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

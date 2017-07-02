@@ -17,7 +17,7 @@ router.post('/login', (req, res) => {
 });
 
 router.use((req, res, next) => {
-  if (req.cookies.token) {
+  if (req.cookies['id_token']) {
     res.cookie('id_token', req.cookies['id_token']);
     next();
   } else {
