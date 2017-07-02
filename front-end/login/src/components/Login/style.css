@@ -1,0 +1,50 @@
+.Login {
+  display: flex;
+  flex-direction: column;
+  min-width: 20rem;
+}
+
+.Login > *:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.Login__input {
+  border: 1px solid #e8e8e8;
+  font-size: inherit;
+  outline: none;
+  padding: .6rem 1rem;
+}
+
+.Login__input:hover {
+  border-color: #ccc;
+}
+
+.Login__input:focus {
+  border-color: #2196f3;
+}
+
+.Login__submit {
+  background-color: #2196f3;
+  border: 2px solid #2196f3;
+  color: white;
+  cursor: pointer;
+  font-size: inherit;
+  outline: none;
+  padding: .6rem 1rem;
+}
+
+.Login__submit:hover:not(:disabled) {
+  background-color: #42a5f5;
+  border-color: #42a5f5;
+}
+
+.Login__submit:focus {
+  border-color: #42a5f5;
+}
+
+.Login__submit:disabled {
+  background-color: #f0f0f0;
+  border-color: #f0f0f0;
+  color: #777;
+  cursor: initial;
+}

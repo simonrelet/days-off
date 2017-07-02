@@ -1,0 +1,17 @@
+.Box {
+  background-color: white;
+  border: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.Box__title {
+  flex: none;
+  font-size: 2rem;
+  margin-bottom: 2.6rem;
+}
+
+.Box__content {
+  flex: 1;
+}

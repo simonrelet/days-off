@@ -1,12 +1,21 @@
-* {
+html {
+  background-color: #f8f8f8;
   box-sizing: border-box;
+  font-size: 62.5%;
+  height: 100%;
 }
 
-html, body {
+body {
+  color: #333;
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: sans-serif;
+  font-size: 1.6rem;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: inherit;
 }
 
 #root {
