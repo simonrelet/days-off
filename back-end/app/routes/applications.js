@@ -10,7 +10,9 @@ function ensureLoggedIn(req, res, next) {
     res.cookie('id_token', req.cookies['id_token']);
     next();
   } else {
-    res.redirect(`/login?${qs.stringify({ next: req.originalUrl })}`);
+    res.redirect(
+      `/login?${qs.stringify({ next: req.originalUrl.replace(/^\//, '') })}`,
+    );
   }
 }
 
