@@ -4,7 +4,7 @@ import Login from './components/Login';
 import './App.css';
 
 const app = {
-  name: '@marv/login',
+  name: 'login',
   version: '0.1.0',
 };
 

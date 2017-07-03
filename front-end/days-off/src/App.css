@@ -1,44 +1,81 @@
 .App {
   display: flex;
-  flex-direction: column;
   height: 100%;
 }
 
-.Header {
+.App-menu {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 25rem;
+}
+
+.App-menu-header {
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  display: flex;
+  flex: none;
+  justify-content: center;
+  padding: 1rem 2rem;
+}
+
+.App-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.App-body-header {
+  align-items: center;
   background-color: #2196f3;
   color: white;
   display: flex;
+  flex: none;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
 }
 
-.Header-left {
+.App-body-content {
+  flex: 1;
+}
+
+.App__header {
+  display: flex;
+}
+
+/*.App__header--left {
   background-color: rgba(0, 0, 0, 0.1);
   overflow: auto;
   padding: 20px 30px;
   text-align: center;
   width: 250px;
   font-size: 20px;
-}
+}*/
 
-.Header-right {
+/*.App__header--right {
+  align-items: center;
+  display: flex;
   flex: auto;
+  justify-content: flex-end;
   overflow: auto;
   padding: 20px 30px;
-}
+}*/
 
-.Content {
+/*.App__content {
   display: flex;
   flex: auto;
   overflow-y: auto;
-}
+}*/
 
-.Menu {
+/*.Menu {
   background-color: #424242;
   overflow: auto;
   padding: 10px 20px;
   width: 250px;
-}
+}*/
 
-.Content-body {
+/*.App__content--body {
   flex: auto;
   overflow: auto;
-}
+}*/

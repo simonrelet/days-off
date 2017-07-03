@@ -1,0 +1,42 @@
+.Menu {
+  background-color: #424242;
+  color: #e0e0e0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.Menu-item {
+  color: #aaa;
+}
+
+.Menu-item:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.Menu-title {
+  background-color: #626262;
+  color: #ccc;
+  padding: .3rem 1.2rem;
+  border-radius: .2rem;
+  margin-bottom: 1.2rem;
+}
+
+.Menu-item-value {
+  color: #e0e0e0;
+}
+
+.Menu-item-line {
+  display: flex;
+  padding: .3rem .6rem;
+}
+
+.Menu-item-line-separator {
+  border-top: 1px solid #626262;
+  margin: .5rem 0;
+}
+
+.Menu-item-line-label {
+  margin-right: auto;
+}
