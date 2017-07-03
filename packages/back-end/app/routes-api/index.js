@@ -4,6 +4,15 @@ import db from '../db';
 
 const router: any = express.Router();
 
+function ensureLoggedIn(req, res, next) {
+  if (req.cookies['id_token']) {
+    res.cookie('id_token', req.cookies['id_token']);
+    next();
+  } else {
+    res.status(401).send('401 Unauthorised');
+  }
+}
+
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
   if (username && password) {
@@ -16,21 +25,12 @@ router.post('/login', (req, res) => {
   res.send();
 });
 
-router.use((req, res, next) => {
-  if (req.cookies['id_token']) {
-    res.cookie('id_token', req.cookies['id_token']);
-    next();
-  } else {
-    res.status(401).send('401 Unauthorised');
-  }
-});
-
-router.get('/user', (req, res) => {
+router.get('/user', ensureLoggedIn, (req, res) => {
   const token = req.cookies['id_token'];
   res.json(db.getUser(token.replace(/^TOKEN-FOR-/, '')));
 });
 
-router.get('/team/:id/', (req, res) => {
+router.get('/team/:id/', ensureLoggedIn, (req, res) => {
   res.json(db.getTeam(req.params.id));
 });
 

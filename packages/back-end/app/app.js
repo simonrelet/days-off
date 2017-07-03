@@ -3,9 +3,8 @@ import express from 'express';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import api from './routes/api';
-import login from './routes/login';
-import daysOff from './routes/days-off';
+import apiRoutes from './routes-api';
+import staticRoutes from './routes-static';
 
 const app: any = express();
 
@@ -14,15 +13,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api', api);
+app.use('/api', apiRoutes);
 
 if (!!process.env.DEVELOPMENT) {
-  app.use('*', (req, res) => {
+  app.use('/', (req, res) => {
     res.send('There are no static assets in a development environment.');
   });
 } else {
-  app.use('/login', login);
-  app.use('/days-off', daysOff);
+  app.use('/', staticRoutes);
 }
 
 // catch 404 and forward to error handler

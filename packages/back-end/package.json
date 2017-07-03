@@ -2,10 +2,9 @@
   "name": "@marv/back-end",
   "version": "0.1.0",
   "private": true,
-  "main": "./app/index.js",
   "scripts": {
     "build": "babel -d build --copy-files app",
-    "check": "eslint src && flow",
+    "check": "eslint . && flow",
     "clean": "rm -rf build",
     "format": "prettier --write --single-quote --trailing-comma all --parser flow 'app/**/*.js'",
     "postinstall": "flow-typed install",

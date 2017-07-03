@@ -1,4 +1,6 @@
 [ignore]
+/build
+/applications
 
 [include]
 
