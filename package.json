@@ -1,19 +1,15 @@
 {
   "name": "@marv/main",
   "version": "0.1.0",
+  "author": "Simon Relet",
   "private": true,
+  "license": "MIT",
+  "description": "Full stack experimentations",
   "scripts": {
-    "build": "yarn run in-packages -- yarn run build",
-    "check": "yarn run in-packages -- yarn run check",
-    "clean": "yarn run in-packages -- yarn run clean",
-    "in-packages": "node scripts/in-packages",
-    "postinstall": "yarn run in-packages -- yarn install",
+    "lerna": "lerna",
     "start": "./start.sh"
   },
-  "dependencies": {
-    "chalk": "^2.0.1",
-    "cross-spawn": "^5.1.0",
-    "fs-extra": "^3.0.1",
-    "minimist": "^1.2.0"
+  "devDependencies": {
+    "lerna": "^2.0.0-rc.5"
   }
 }

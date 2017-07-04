@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import Box from './components/Box';
 import Login from './components/Login';

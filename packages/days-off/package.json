@@ -1,7 +1,9 @@
 {
   "name": "@marv/days-off",
   "version": "0.1.0",
+  "author": "Simon Relet",
   "private": true,
+  "description": "@marv days-off applicaion",
   "proxy": "http://localhost:3001",
   "scripts": {
     "build": "PUBLIC_URL=/days-off react-scripts build",
@@ -14,6 +16,7 @@
     "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
+    "@marv/components": "^0.1.0",
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
     "react": "^15.6.1",

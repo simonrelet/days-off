@@ -1,24 +1,27 @@
+// @flow
 import React, { Component } from 'react';
 import qs from 'qs';
 import View from './View';
 
 export default class Login extends Component {
+  state: {
+    username: string,
+    password: string,
+  };
+
   constructor() {
     super();
-
     this.state = {
       username: '',
       password: '',
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = (e: any) => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = (e: any) => {
     e.preventDefault();
 
     fetch('/api/login', {
@@ -35,7 +38,7 @@ export default class Login extends Component {
         }
       })
       .catch(err => console.error(err));
-  }
+  };
 
   render() {
     const { username, password } = this.state;
