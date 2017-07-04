@@ -1,5 +1,5 @@
-// @flow
 import React from 'react';
+import MarvApp from '@marv/components/build/MarvApp';
 import Box from './components/Box';
 import Login from './components/Login';
 import './App.css';
@@ -11,19 +11,14 @@ const app = {
 
 export default function() {
   return (
-    <div className="App">
-      <div className="App__content">
-        <div className="App__content--centered">
+    <MarvApp
+      app={app}
+      content={({ className }) =>
+        <div className={className + ' App__content--centered'}>
           <Box title="Login">
             <Login />
           </Box>
-        </div>
-      </div>
-      <div className="App__footer">
-        <div className="App__footer--right">
-          {app.name}@{app.version}
-        </div>
-      </div>
-    </div>
+        </div>}
+    />
   );
 }

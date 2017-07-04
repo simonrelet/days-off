@@ -22,22 +22,22 @@ body {
   height: 100%;
 }
 
-.App {
+.MarvApp {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.App__header {
+.MarvApp__header {
   flex: none;
 }
 
-.App__content {
+.MarvApp__content {
   flex: 1;
   overflow: auto;
 }
 
-.App__footer {
+.MarvApp__footer {
   color: #aaa;
   flex: none;
   font-size: 1.2rem;

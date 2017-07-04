@@ -12,10 +12,10 @@ type Props = {
 
 export default function({ header, content, app }: Props) {
   return (
-    <div className="App">
-      {header && <header className="App__header" />}
-      <content className="App__content" />
-      <div className="App__footer">
+    <div className="MarvApp">
+      {header && <header className="MarvApp__header" />}
+      {React.createElement(content, { className: 'MarvApp__content' })}
+      <div className="MarvApp__footer">
         {app.name}@{app.version}
       </div>
     </div>
