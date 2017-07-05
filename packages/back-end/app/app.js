@@ -1,4 +1,3 @@
-// @flow
 import express from 'express';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -6,7 +5,7 @@ import bodyParser from 'body-parser';
 import apiRoutes from './routes-api';
 import staticRoutes from './routes-static';
 
-const app: any = express();
+const app = express();
 
 app.use(logger(!!process.env.DEVELOPMENT ? 'dev' : 'combined'));
 app.use(bodyParser.json());
@@ -25,7 +24,7 @@ if (!!process.env.DEVELOPMENT) {
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err: any = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

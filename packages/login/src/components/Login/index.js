@@ -1,14 +1,8 @@
-// @flow
 import React, { Component } from 'react';
 import qs from 'qs';
 import View from './View';
 
 export default class Login extends Component {
-  state: {
-    username: string,
-    password: string,
-  };
-
   constructor() {
     super();
     this.state = {
@@ -17,11 +11,11 @@ export default class Login extends Component {
     };
   }
 
-  handleChange = (e: any) => {
+  handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = (e: any) => {
+  handleSubmit = e => {
     e.preventDefault();
 
     fetch('/api/login', {

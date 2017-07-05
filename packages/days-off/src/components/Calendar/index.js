@@ -1,9 +1,7 @@
-// @flow
 import React, { Component } from 'react';
 import View from './view';
-import type { Day, DaySelection, WeekDay } from './view';
 
-const days: Array<Day> = [];
+const days = [];
 
 let i;
 for (i = 6; i > 0; i--) {
@@ -27,7 +25,7 @@ for (i = 0; i < 5; i++) {
   days.push({ disabled: true });
 }
 
-const weekDays: Array<WeekDay> = [
+const weekDays = [
   { value: 'MO' },
   { value: 'TU' },
   { value: 'WE' },
@@ -38,9 +36,9 @@ const weekDays: Array<WeekDay> = [
 ];
 
 export default class Calendar extends Component {
-  handleSelect(day: Day, selection: DaySelection) {
+  handleSelect = (day, selection) => {
     console.log('selected:', day, 'selection:', selection);
-  }
+  };
 
   render() {
     return (

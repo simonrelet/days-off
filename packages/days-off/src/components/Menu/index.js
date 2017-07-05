@@ -1,8 +1,8 @@
-// @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
-function Credits({ title }: { title: string }) {
+function Credits({ title }) {
   return (
     <div className="Menu-item">
       <div className="Menu-title">
@@ -30,6 +30,10 @@ function Credits({ title }: { title: string }) {
     </div>
   );
 }
+
+Credits.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default function() {
   return (

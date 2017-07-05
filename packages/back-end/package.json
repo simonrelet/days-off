@@ -6,10 +6,9 @@
   "description": "@marv back-end",
   "scripts": {
     "build": "babel -d build --copy-files app",
-    "check": "eslint . && flow",
+    "check": "eslint .",
     "clean": "rm -rf build",
-    "format": "prettier --write --single-quote --trailing-comma all --parser flow 'app/**/*.js'",
-    "postinstall": "flow-typed install",
+    "format": "prettier --write --single-quote --trailing-comma all 'app/**/*.js'",
     "start": "PORT=3001 DEVELOPMENT=true babel-node app"
   },
   "dependencies": {
@@ -25,15 +24,12 @@
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
-    "babel-preset-flow": "^6.23.0",
     "eslint": "^3.19.0",
     "eslint-config-react-app": "^1.0.5",
     "eslint-plugin-flowtype": "^2.33.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "flow-bin": "^0.49.1",
-    "flow-typed": "^2.1.2",
     "prettier": "^1.5.2"
   }
 }

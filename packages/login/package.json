@@ -7,25 +7,23 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "build": "PUBLIC_URL=/login react-scripts build",
-    "check": "eslint src && flow",
+    "check": "eslint src",
     "clean": "rm -rf build",
     "fail": "echo \"oh no\" >&2 && exit 1",
-    "format": "prettier --write --single-quote --trailing-comma all --parser flow 'src/**/*.js'",
-    "postinstall": "flow-typed install",
+    "format": "prettier --write --single-quote --trailing-comma all 'src/**/*.js'",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
-    "@marv/components": "^0.1.0",
+    "@marv/components": "file:../components/build/",
+    "prop-types": "^15.5.10",
     "qs": "^6.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10"
   },
   "devDependencies": {
-    "eslint": "^4.1.1",
-    "flow-bin": "^0.49.1",
-    "flow-typed": "^2.1.2",
+    "eslint": "^3.19.0",
     "prettier": "^1.5.2"
   }
 }

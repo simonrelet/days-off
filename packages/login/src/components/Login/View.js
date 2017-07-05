@@ -1,20 +1,8 @@
-// @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
-type Props = {
-  username: string,
-  password: string,
-  onChange: (e: SyntheticInputEvent) => void,
-  onLogin: () => void,
-};
-
-export default function Login({
-  username,
-  password,
-  onChange,
-  onLogin,
-}: Props) {
+export default function Login({ username, password, onChange, onLogin }) {
   const disabled = !username || !password;
 
   return (
@@ -42,3 +30,10 @@ export default function Login({
     </form>
   );
 }
+
+Login.propTypes = {
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
+};

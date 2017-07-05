@@ -1,13 +1,8 @@
-// @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
-type Props = {
-  children: any,
-  title: string,
-};
-
-export default function Box({ children, title }: Props) {
+export default function Box({ children, title }) {
   return (
     <div className="Box">
       <div className="Box__title">
@@ -19,3 +14,8 @@ export default function Box({ children, title }: Props) {
     </div>
   );
 }
+
+Box.propTypes = {
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+};

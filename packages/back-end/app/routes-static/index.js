@@ -1,10 +1,13 @@
-// @flow
 import express from 'express';
 import path from 'path';
 import qs from 'qs';
 
 function staticPath(packageName, file) {
-  return path.join(__dirname, '..', '..', '..', packageName, 'build', file || '');
+  // prettier-ignore
+  return path.join(
+    __dirname, '..', '..', '..', packageName, 'build',
+    file || '',
+  );
 }
 
 function ensureLoggedIn(req, res, next) {
@@ -28,8 +31,8 @@ function ensureNotLoggedIn(req, res, next) {
   }
 }
 
-function routerWithGuard(packageName: string, guard: any): any {
-  const router: any = express.Router();
+function routerWithGuard(packageName, guard) {
+  const router = express.Router();
   router.use(guard);
   router.use(express.static(staticPath(packageName)));
   router.get('*', (req, res) => {
@@ -38,11 +41,8 @@ function routerWithGuard(packageName: string, guard: any): any {
   return router;
 }
 
-const router: any = express.Router();
+const router = express.Router();
 router.use('/login', routerWithGuard('login', ensureNotLoggedIn));
 router.use('/days-off', routerWithGuard('days-off', ensureLoggedIn));
-router.use((req, res, next) => {
-  console.log('originalUrl:', req.originalUrl);
-  next();
-})
+
 export default router;

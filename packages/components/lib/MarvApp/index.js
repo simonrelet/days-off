@@ -1,16 +1,7 @@
-// @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 
-type Props = {
-  app: {
-    name: string,
-    version: string,
-  },
-  content: any,
-  header?: any,
-};
-
-export default function({ header, content, app }: Props) {
+export default function MarvApp({ header, content, app }) {
   return (
     <div className="MarvApp">
       {header && <header className="MarvApp__header" />}
@@ -21,3 +12,12 @@ export default function({ header, content, app }: Props) {
     </div>
   );
 }
+
+MarvApp.propTypes = {
+  app: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    version: PropTypes.string.isRequired,
+  }).isRequired,
+  content: PropTypes.node.isRequired,
+  header: PropTypes.node,
+};

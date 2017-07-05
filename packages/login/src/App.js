@@ -1,5 +1,5 @@
 import React from 'react';
-import MarvApp from '@marv/components/build/MarvApp';
+import MarvApp from '@marv/components/MarvApp';
 import Box from './components/Box';
 import Login from './components/Login';
 import './App.css';

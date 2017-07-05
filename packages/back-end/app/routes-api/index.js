@@ -1,8 +1,7 @@
-// @flow
 import express from 'express';
 import db from '../db';
 
-const router: any = express.Router();
+const router = express.Router();
 
 function ensureLoggedIn(req, res, next) {
   if (req.cookies['id_token']) {

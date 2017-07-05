@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import Calendar from './components/Calendar';
 import UserHeader from './components/UserHeader';
@@ -11,13 +10,6 @@ const app = {
 };
 
 export default class App extends Component {
-  state: {
-    user: {
-      firstname: string,
-      lastname: string,
-    },
-  };
-
   constructor() {
     super();
     this.state = {

@@ -5,15 +5,15 @@
   "private": true,
   "description": "@marv react components",
   "scripts": {
-    "build": "flow-copy-source lib build && babel -d build lib",
-    "check": "eslint src && flow",
+    "build": "babel -d build lib",
+    "check": "eslint src",
     "clean": "rm -rf build",
-    "format": "prettier --write --single-quote --trailing-comma all --parser flow 'lib/**/*.@(js|css)'",
-    "prebuild": "mkdir -p build && cat lib/**/*.css > build/style.css",
-    "postinstall": "flow-typed install"
+    "format": "prettier --write --single-quote --trailing-comma all 'lib/**/*.@(js|css)'",
+    "prebuild": "mkdir -p build && cat lib/**/*.css > build/style.css && cp package.json build/"
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1"
   },
   "devDependencies": {
@@ -21,7 +21,6 @@
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
-    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-react-app": "^1.0.5",
@@ -29,9 +28,6 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.0.1",
-    "flow-bin": "^0.49.1",
-    "flow-copy-source": "^1.2.0",
-    "flow-typed": "^2.1.2",
     "prettier": "^1.5.2"
   }
 }
