@@ -6,10 +6,6 @@
   "license": "MIT",
   "description": "Full stack experimentations",
   "scripts": {
-    "lerna": "lerna",
-    "start": "./start.sh"
-  },
-  "devDependencies": {
-    "lerna": "^2.0.0-rc.5"
+    "start": "./scripts/start.sh"
   }
 }
