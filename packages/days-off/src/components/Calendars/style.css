@@ -1,0 +1,55 @@
+.Calendars {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Calendars__header {
+  align-items: baseline;
+  background-color: #f5f5f5;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  color: #757575;
+  display: flex;
+  flex: none;
+}
+
+.Calendars__button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  flex: none;
+  font-size: inherit;
+  outline: none;
+  padding: 1rem 1rem;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+.Calendars__button:hover {
+  background-color: #e0e0e0;
+}
+
+.Calendars__button--today {
+  margin: 0 auto;
+}
+
+.Calendars__header__content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.Calendars__date {
+  margin: 0 .5rem;
+}
+
+.Calendars__content {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.Calendar {
+  margin: 2rem;
+}

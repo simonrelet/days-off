@@ -1,53 +1,48 @@
-import React, { Component } from 'react';
+import React from 'react';
+import moment from 'moment';
+import range from 'lodash/range';
 import View from './view';
 
-const days = [];
+function getDays(day, today, selectedDays) {
+  const days = range(day.daysInMonth()).reduce((acc, i) => {
+    const d = moment(day).date(i + 1);
+    const selection = selectedDays[d.format('YYYY-MM-DD')] || {};
+    return [
+      ...acc,
+      {
+        value: d,
+        label: d.format('DD'),
+        today: d.isSame(today, 'day'),
+        disabled: d.day() === 0 || d.day() === 6,
+        selection: {
+          morning: !!selection.morning,
+          afternoon: !!selection.afternoon,
+        },
+      },
+    ];
+  }, []);
 
-let i;
-for (i = 6; i > 0; i--) {
-  days.push({ disabled: true });
+  return days;
 }
 
-for (i = 0; i < 31; i++) {
-  const disabled = i % 7 === 0 || (i + 1) % 7 === 0;
-  const selected = i >= 12 && i <= 20;
-  const today = i === 20;
-  const value = i + 1;
-  days.push({
-    value,
-    selected: selected ? { morning: true, afternoon: true } : null,
-    today,
-    disabled,
-  });
+function getWeekDays(day) {
+  return moment.weekdaysMin(true).map(d => ({
+    label: d.toUpperCase(),
+  }));
 }
 
-for (i = 0; i < 5; i++) {
-  days.push({ disabled: true });
-}
-
-const weekDays = [
-  { value: 'MO' },
-  { value: 'TU' },
-  { value: 'WE' },
-  { value: 'TH' },
-  { value: 'FR' },
-  { value: 'SA', weekend: true },
-  { value: 'SU', weekend: true },
-];
-
-export default class Calendar extends Component {
-  handleSelect = (day, selection) => {
-    console.log('selected:', day, 'selection:', selection);
-  };
-
-  render() {
-    return (
-      <View
-        days={days}
-        month="June"
-        weekDays={weekDays}
-        onSelect={this.handleSelect}
-      />
-    );
-  }
+export default function Calendar({ day, onSelect, today, selectedDays }) {
+  const days = getDays(day, today, selectedDays);
+  const month = day.format('MMMM');
+  const year = day.isSame(today, 'year') ? '' : day.format('YYYY');
+  const weekDays = getWeekDays(day);
+  return (
+    <View
+      days={days}
+      month={month}
+      year={year}
+      weekDays={weekDays}
+      onSelect={onSelect}
+    />
+  );
 }

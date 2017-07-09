@@ -45,4 +45,9 @@ const router = express.Router();
 router.use('/login', routerWithGuard('login', ensureNotLoggedIn));
 router.use('/days-off', routerWithGuard('days-off', ensureLoggedIn));
 
+// redirect to /days-off for requests on root URL
+router.get('/', (req, res) => {
+  res.redirect('/days-off/');
+});
+
 export default router;

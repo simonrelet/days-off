@@ -1,95 +1,98 @@
-// @flow
 import React from 'react';
-import chunk from 'lodash/chunk';
 import classnames from 'classnames';
 import './style.css';
 
-export type Day = {
-  disabled?: boolean,
-  selected?: ?{
-    morning?: boolean,
-    afternoon?: boolean,
-  },
-  today?: boolean,
-  value?: number,
-};
-
-export type DaySelection = { morning?: boolean, afternoon?: boolean };
-
-export type WeekDay = {
-  value: string,
-};
-
-function DayBlock({
-  day,
-  onClick,
-}: {
-  day: Day,
-  onClick: (Day, DaySelection) => void,
-}) {
-  if (day.disabled) {
-    return (
-      <div className={classnames('block', { today: day.today })}>
-        {day.value ? <span>{day.value}</span> : null}
-      </div>
-    );
-  }
-
-  const { morning = false, afternoon = false } = day.selected || {};
-
+function WeekDay({ day, index }) {
   return (
-    <div className="block-wrapper">
-      <div
-        className={classnames('block', 'day', {
-          selected: !!day.selected,
-          today: day.today,
-        })}
-      >
-        {day.value ? <span>{day.value}</span> : null}
-      </div>
-      <div className="split">
-        <span
-          className={classnames('part', { selected: morning })}
-          onClick={() => onClick(day, { morning: true })}
-        />
-        <span
-          className={classnames('part', { selected: afternoon })}
-          onClick={() => onClick(day, { afternoon: true })}
-        />
-      </div>
+    <div
+      className="Calendar__tile Calendar__tile--header"
+      style={{
+        gridColumn: `${index * 2 + 1}/${index * 2 + 3}`,
+        gridRow: '1/2',
+      }}
+    >
+      <span>
+        {day.label}
+      </span>
     </div>
   );
+}
+
+function Day({ day, position: { row, column } }) {
+  return (
+    <div
+      className={classnames('Calendar__tile', 'Calendar__day', {
+        'Calendar__day--disabled': day.disabled,
+        'Calendar__day--today': day.today,
+      })}
+      style={{
+        gridRow: `${row + 1}/${row + 2}`,
+        gridColumn: `${column + 1}/${column + 3}`,
+      }}
+    >
+      <span>
+        {day.label}
+      </span>
+    </div>
+  );
+}
+
+function HalfDay({ day, dayPart, onSelect, position: { row, column } }) {
+  return (
+    <div
+      className={classnames('Calendar__tile', 'Calendar__tile--button', {
+        'Calendar__tile--button-selected': day.selection[dayPart],
+      })}
+      onClick={() => onSelect(day, { [dayPart]: true })}
+      style={{
+        gridRow: `${row + 1}/${row + 2}`,
+        gridColumn: `${column + 1}/${column + 2}`,
+      }}
+    />
+  );
+}
+
+function getItems(days) {
+  let row = 1;
+  return days.reduce((acc, day) => {
+    const column = day.value.weekday() * 2;
+    if (column === 0 && day.value.date() > 0) {
+      row = row + 1;
+    }
+
+    return day.disabled
+      ? [...acc, { day, position: { row, column } }]
+      : [
+          ...acc,
+          { day, dayPart: 'morning', position: { row, column } },
+          { day, dayPart: 'afternoon', position: { row, column: column + 1 } },
+          { day, position: { row, column } },
+        ];
+  }, []);
 }
 
 export default function CalendarView({
   days,
   month,
+  year,
   weekDays,
   onSelect = () => {},
-}: {
-  days: Array<Day>,
-  month: string,
-  weekDays: Array<WeekDay>,
-  onSelect: (Day, DaySelection) => void,
 }) {
+  const items = getItems(days);
   return (
     <div className="Calendar">
-      <div className="month">{month}</div>
-      <div className="header">
-        {weekDays.map((day, i) =>
-          <div key={i} className="block">
-            {day.value ? <span>{day.value}</span> : null}
-          </div>,
+      <div className="Calendar__month">
+        {month} {year}
+      </div>
+      <div className="Calendar__grid">
+        {weekDays.map((day, i) => <WeekDay key={i} day={day} index={i} />)}
+        {items.map(
+          (item, i) =>
+            item.dayPart
+              ? <HalfDay key={i} {...item} onSelect={onSelect} />
+              : <Day key={i} {...item} />,
         )}
       </div>
-
-      {chunk(days, 7).map((days, i) =>
-        <div key={i} className="week">
-          {days.map((day, i) =>
-            <DayBlock onClick={onSelect} key={i} day={day} />,
-          )}
-        </div>,
-      )}
     </div>
   );
 }

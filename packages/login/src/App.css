@@ -1,28 +1,6 @@
-.App {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.App__content {
-  flex: 1;
-}
-
 .App__content--centered {
   align-items: center;
   display: flex;
   height: 100%;
   justify-content: center;
-}
-
-.App__footer {
-  color: #aaa;
-  display: flex;
-  flex: none;
-  font-size: 1.2rem;
-  padding: 1rem 1.6rem;
-}
-
-.App__footer--right {
-  margin-left: auto;
 }

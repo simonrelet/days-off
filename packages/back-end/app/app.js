@@ -7,7 +7,11 @@ import staticRoutes from './routes-static';
 
 const app = express();
 
-app.use(logger(!!process.env.DEVELOPMENT ? 'dev' : 'combined'));
+if (process.env.DEVELOPMENT) {
+  console.log('RUNNING IN DEVELOPMENT MODE.');
+}
+
+app.use(logger(process.env.DEVELOPMENT ? 'dev' : 'combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

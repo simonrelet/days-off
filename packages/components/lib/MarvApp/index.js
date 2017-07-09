@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function MarvApp({ header, content, app }) {
   return (
     <div className="MarvApp">
-      {header && <header className="MarvApp__header" />}
+      {header && React.createElement(header, { className: 'MarvApp__header' })}
       {React.createElement(content, { className: 'MarvApp__content' })}
       <div className="MarvApp__footer">
         {app.name}@{app.version}
@@ -18,6 +18,6 @@ MarvApp.propTypes = {
     name: PropTypes.string.isRequired,
     version: PropTypes.string.isRequired,
   }).isRequired,
-  content: PropTypes.node.isRequired,
-  header: PropTypes.node,
+  content: PropTypes.func.isRequired,
+  header: PropTypes.func,
 };

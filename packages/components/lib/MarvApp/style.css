@@ -1,5 +1,5 @@
 html {
-  background-color: #f8f8f8;
+  background-color: #fafafa;
   box-sizing: border-box;
   font-size: 62.5%;
   height: 100%;
@@ -11,7 +11,7 @@ body {
   padding: 0;
   height: 100%;
   font-size: 1.6rem;
-  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -42,4 +42,5 @@ body {
   flex: none;
   font-size: 1.2rem;
   padding: 1rem 1.6rem;
+  text-align: center;
 }
