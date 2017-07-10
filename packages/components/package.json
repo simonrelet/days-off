@@ -5,17 +5,19 @@
   "private": true,
   "description": "@marv react components",
   "scripts": {
-    "build": "babel -d build lib",
+    "build": "babel -d build lib --copy-files",
     "check": "eslint src",
     "clean": "rm -rf build",
     "fail": "echo \"oh yeah\"",
     "format": "prettier --write --single-quote --trailing-comma all 'lib/**/*.@(js|css)'",
-    "prebuild": "mkdir -p build && cat lib/**/*.css > build/style.css && cp package.json build/"
+    "prebuild": "mkdir -p build && cp package.json build/"
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "color": "^2.0.0",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1"
+    "react": "^15.6.1",
+    "react-jss": "^7.0.0-pre.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
