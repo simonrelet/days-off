@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import Calendars from './components/Calendars';
-import UserHeader from './components/UserHeader';
-import Menu from './components/Menu';
-import './App.css';
+import injectSheet from 'react-jss';
+import Calendars from '../Calendars';
+import UserHeader from '../UserHeader';
+import Menu from '../Menu';
+import styles from './styles';
 
 const app = {
   name: 'days-off',
   version: '0.1.0',
 };
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -32,22 +33,23 @@ export default class App extends Component {
 
   render() {
     const { user, selectedDays } = this.state;
+    const { classes } = this.props;
     return (
-      <div className="App">
-        <div className="App__menu">
-          <div className="App__header App__menu__header">
+      <div className={classes.app}>
+        <div className={classes.menu}>
+          <div className={classes.menuHeader}>
             <span>Days Off</span>
           </div>
-          <Menu className="App__menu__content" />
-          <div className="App__menu__footer">
+          <Menu className={classes.menuContent} />
+          <div className={classes.menuFooter}>
             {app.name}@{app.version}
           </div>
         </div>
-        <div className="App__body">
-          <div className="App__header App__body__header">
+        <div className={classes.body}>
+          <div className={classes.bodyHeader}>
             <UserHeader {...user} />
           </div>
-          <div className="App__body__content">
+          <div className={classes.bodyContent}>
             <Calendars
               onSelect={this.handleSelect}
               selectedDays={selectedDays}
@@ -58,3 +60,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default injectSheet(styles)(App);

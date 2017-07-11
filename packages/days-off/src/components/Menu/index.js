@@ -1,42 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import './style.css';
+import injectSheet from 'react-jss';
+import { menuStyles, itemStyles } from './styles';
 
-function Credits({ title }) {
+function UnstyledCredits({ title, classes }) {
   return (
-    <div className="Menu__item">
-      <div className="Menu__item__title">
+    <div className={classes.item}>
+      <div className={classes.title}>
         {title}
       </div>
-      <div className="Menu__item__line">
-        <div className="Menu__item__line__label">Paid leaves</div>
-        <div className="Menu__item__value">5.0</div>
-        <div className="Menu__item__value-ref">/ 25.0</div>
+      <div className={classes.line}>
+        <div className={classes.label}>Paid leaves</div>
+        <div className={classes.value}>5.0</div>
+        <div className={classes.valueRef}>/ 25.0</div>
       </div>
-      <div className="Menu__item__line">
-        <div className="Menu__item__line__label">RTT</div>
-        <div className="Menu__item__value">2.0</div>
-        <div className="Menu__item__value-ref">/ 10.0</div>
+      <div className={classes.line}>
+        <div className={classes.label}>RTT</div>
+        <div className={classes.value}>2.0</div>
+        <div className={classes.valueRef}>/ 10.0</div>
       </div>
-      <div className="Menu__item__line Menu__item__line--total">
-        <div className="Menu__item__line__label">Total</div>
-        <div className="Menu__item__value">7.0</div>
-        <div className="Menu__item__value-ref">/ 35.0</div>
+      <div className={classnames(classes.line, classes.lineTotal)}>
+        <div className={classes.label}>Total</div>
+        <div className={classes.value}>7.0</div>
+        <div className={classes.valueRef}>/ 35.0</div>
       </div>
     </div>
   );
 }
 
-Credits.propTypes = {
+UnstyledCredits.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default function Menu({ className }) {
+const Credits = injectSheet(itemStyles)(UnstyledCredits);
+
+function Menu({ className, classes }) {
   return (
-    <div className={classnames('Menu', className)}>
+    <div className={classnames(classes.menu, className)}>
       <Credits title="Credits" />
       <Credits title="Current selection" />
     </div>
   );
 }
+
+export default injectSheet(menuStyles)(Menu);
