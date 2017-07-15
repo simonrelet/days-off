@@ -8,7 +8,6 @@
     "build": "babel -d build --copy-files app",
     "check": "eslint .",
     "clean": "rm -rf build",
-    "fail": "echo \"oh yeah\"",
     "format": "prettier --write --single-quote --trailing-comma all 'app/**/*.js'",
     "start": "PORT=3001 DEVELOPMENT=true babel-node app"
   },

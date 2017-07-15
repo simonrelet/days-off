@@ -9,7 +9,6 @@
     "build": "PUBLIC_URL=/login react-scripts build",
     "check": "eslint src",
     "clean": "rm -rf build",
-    "fail": "echo \"oh no\" >&2 && exit 1",
     "format": "prettier --write --single-quote --trailing-comma all 'src/**/*.js'",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"

@@ -9,7 +9,6 @@
     "build": "PUBLIC_URL=/days-off react-scripts build",
     "check": "eslint src",
     "clean": "rm -rf build",
-    "fail": "echo \"oh yeah\"",
     "format": "prettier --write --single-quote --trailing-comma all 'src/**/*.js'",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"

@@ -5,9 +5,12 @@
   "private": true,
   "license": "MIT",
   "description": "Full stack experimentations",
+  "engines": {
+    "node": "8.1.x"
+  },
   "scripts": {
     "check": "eslint scripts/",
-    "install-all": "./scripts/install.js",
+    "install-all": "node scripts/install",
     "start": "node packages/back-end/build"
   },
   "devDependencies": {

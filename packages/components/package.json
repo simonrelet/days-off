@@ -8,7 +8,6 @@
     "build": "babel -d build lib --copy-files",
     "check": "eslint src",
     "clean": "rm -rf build",
-    "fail": "echo \"oh yeah\"",
     "format": "prettier --write --single-quote --trailing-comma all 'lib/**/*.@(js|css)'",
     "prebuild": "mkdir -p build && cp package.json build/"
   },
