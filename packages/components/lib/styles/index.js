@@ -1,4 +1,5 @@
 import color from 'color';
+export { default as colors } from './colors';
 
 function alpha(a) {
   return color().alpha(a).string();
@@ -39,4 +40,10 @@ export const depths = {
       { y: 15, blur: 20, color: alpha(0.22) },
     ],
   },
+};
+
+export const transitionAll = {
+  property: 'all',
+  duration: 450,
+  timingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
 };

@@ -1,11 +1,12 @@
 import React from 'react';
+import injectSheet from 'react-jss';
 import classnames from 'classnames';
-import './style.css';
+import { calendar, weekDay, day, halfDay } from './styles';
 
-function WeekDay({ day, index }) {
+const WeekDay = injectSheet(weekDay)(function({ classes, day, index }) {
   return (
     <div
-      className="Calendar__tile Calendar__tile--header"
+      className={classes.weekDay}
       style={{
         gridColumn: `${index * 2 + 1}/${index * 2 + 3}`,
         gridRow: '1/2',
@@ -16,14 +17,18 @@ function WeekDay({ day, index }) {
       </span>
     </div>
   );
-}
+});
 
-function Day({ day, position: { row, column } }) {
+const Day = injectSheet(day)(function({
+  classes,
+  day,
+  position: { row, column },
+}) {
   return (
     <div
-      className={classnames('Calendar__tile', 'Calendar__day', {
-        'Calendar__day--disabled': day.disabled,
-        'Calendar__day--today': day.today,
+      className={classnames(classes.day, {
+        [classes.disabled]: day.disabled,
+        [classes.today]: day.today,
       })}
       style={{
         gridRow: `${row + 1}/${row + 2}`,
@@ -35,22 +40,32 @@ function Day({ day, position: { row, column } }) {
       </span>
     </div>
   );
-}
+});
 
-function HalfDay({ day, dayPart, onSelect, position: { row, column } }) {
+const HalfDay = injectSheet(halfDay)(function({
+  classes,
+  day,
+  dayPart,
+  onSelect,
+  position: { row, column },
+}) {
   return (
     <div
-      className={classnames('Calendar__tile', 'Calendar__tile--button', {
-        'Calendar__tile--button-selected': day.selection[dayPart],
+      className={classnames(classes.halfDay, {
+        [classes.selected]: day.selection[dayPart],
       })}
-      onClick={() => onSelect(day, { [dayPart]: true })}
+      onClick={() =>
+        onSelect({
+          date: day.value.format('YYYY-MM-DD'),
+          halfDay: dayPart,
+        })}
       style={{
         gridRow: `${row + 1}/${row + 2}`,
         gridColumn: `${column + 1}/${column + 2}`,
       }}
     />
   );
-}
+});
 
 function getItems(days) {
   let row = 1;
@@ -71,7 +86,9 @@ function getItems(days) {
   }, []);
 }
 
-export default function CalendarView({
+function CalendarView({
+  classes,
+  className,
   days,
   month,
   year,
@@ -80,11 +97,11 @@ export default function CalendarView({
 }) {
   const items = getItems(days);
   return (
-    <div className="Calendar">
-      <div className="Calendar__month">
+    <div className={classnames(classes.calendar, className)}>
+      <div className={classes.month}>
         {month} {year}
       </div>
-      <div className="Calendar__grid">
+      <div className={classes.grid}>
         {weekDays.map((day, i) => <WeekDay key={i} day={day} index={i} />)}
         {items.map(
           (item, i) =>
@@ -96,3 +113,5 @@ export default function CalendarView({
     </div>
   );
 }
+
+export default injectSheet(calendar)(CalendarView);

@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.css';
+import injectSheet from 'react-jss';
+import styles from './styles';
 
-export default function Login({ username, password, onChange, onLogin }) {
+function Login({ classes, username, password, onChange, onLogin }) {
   const disabled = !username || !password;
 
   return (
-    <form className="Login" onSubmit={onLogin}>
+    <form className={classes.login} onSubmit={onLogin}>
       <input
         autoFocus
         type="text"
-        className="Login__input"
+        className={classes.input}
         placeholder="Username"
         name="username"
         value={username}
@@ -18,13 +19,13 @@ export default function Login({ username, password, onChange, onLogin }) {
       />
       <input
         type="password"
-        className="Login__input"
+        className={classes.input}
         placeholder="Password"
         name="password"
         value={password}
         onChange={onChange}
       />
-      <button disabled={disabled} className="Login__submit" type="submit">
+      <button disabled={disabled} className={classes.button} type="submit">
         Log in
       </button>
     </form>
@@ -37,3 +38,5 @@ Login.propTypes = {
   onChange: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
 };
+
+export default injectSheet(styles)(Login);

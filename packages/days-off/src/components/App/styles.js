@@ -1,12 +1,13 @@
-import { depths } from '@marv/components/styles';
+import { depths, colors } from '@marv/components/styles';
 
 const menuStyles = {
   alignItems: 'center',
-  color: 'white',
+  color: colors.white,
   display: 'flex',
   flex: 'none',
   fontSize: '2rem',
-  padding: ['1rem', '2rem'],
+  padding: [0, '2rem'],
+  height: '5rem',
 };
 
 export default {
@@ -16,6 +17,7 @@ export default {
   },
   menu: {
     ...depths.level1,
+    backgroundColor: colors.grey.c100,
     display: 'flex',
     flex: 'none',
     flexDirection: 'column',
@@ -24,15 +26,14 @@ export default {
   },
   menuHeader: {
     ...menuStyles,
-    backgroundColor: '#7cb342',
+    backgroundColor: colors.blue.c700,
     justifyContent: 'center',
   },
   menuContent: {
     flex: '1',
   },
   menuFooter: {
-    backgroundColor: '#eee',
-    color: '#aaa',
+    color: colors.grey.c400,
     flex: 'none',
     fontSize: '1.2rem',
     padding: ['1rem', '1.6rem'],
@@ -45,11 +46,17 @@ export default {
   },
   bodyHeader: {
     ...menuStyles,
-    backgroundColor: '#8bc34a',
+    backgroundColor: colors.blue.c500,
     justifyContent: 'flex-end',
   },
   bodyContent: {
     flex: '1',
     overflow: 'auto',
+  },
+  icon: {
+    height: '3rem',
+    width: '3rem',
+    marginRight: '1rem',
+    fill: 'currentColor',
   },
 };

@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import injectSheet from 'react-jss';
 import { menuStyles, itemStyles } from './styles';
 
-function UnstyledCredits({ title, classes }) {
+const Credits = injectSheet(itemStyles)(function({ title, classes }) {
   return (
     <div className={classes.item}>
       <div className={classes.title}>
@@ -27,13 +26,7 @@ function UnstyledCredits({ title, classes }) {
       </div>
     </div>
   );
-}
-
-UnstyledCredits.propTypes = {
-  title: PropTypes.string.isRequired,
-};
-
-const Credits = injectSheet(itemStyles)(UnstyledCredits);
+});
 
 function Menu({ className, classes }) {
   return (

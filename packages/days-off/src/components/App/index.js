@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import injectSheet from 'react-jss';
+import Icon from '@marv/components/Icon';
 import Calendars from '../Calendars';
 import UserHeader from '../UserHeader';
 import Menu from '../Menu';
@@ -18,31 +19,33 @@ class App extends Component {
         firstname: 'Simon',
         lastname: 'Relet',
       },
-      selectedDays: {},
+      selection: null,
     };
   }
 
-  handleSelect = (day, selection) => {
-    console.log('selected:', day, 'selection:', selection);
-    this.setState({
-      selectedDays: {
-        [day.value.format('YYYY-MM-DD')]: selection,
+  handleSelect = selection => {
+    console.log('selection:', selection);
+    this.setState(prevState => ({
+      selection: {
+        start: { ...selection },
+        end: { ...selection },
       },
-    });
+    }));
   };
 
   render() {
-    const { user, selectedDays } = this.state;
+    const { user, selection } = this.state;
     const { classes } = this.props;
     return (
       <div className={classes.app}>
         <div className={classes.menu}>
           <div className={classes.menuHeader}>
+            <Icon name="days-off" className={classes.icon} />
             <span>Days Off</span>
           </div>
           <Menu className={classes.menuContent} />
           <div className={classes.menuFooter}>
-            {app.name}@{app.version}
+            {app.version}
           </div>
         </div>
         <div className={classes.body}>
@@ -50,10 +53,7 @@ class App extends Component {
             <UserHeader {...user} />
           </div>
           <div className={classes.bodyContent}>
-            <Calendars
-              onSelect={this.handleSelect}
-              selectedDays={selectedDays}
-            />
+            <Calendars onSelect={this.handleSelect} selection={selection} />
           </div>
         </div>
       </div>

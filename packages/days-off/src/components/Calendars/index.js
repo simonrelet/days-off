@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import range from 'lodash/range';
+import injectSheet from 'react-jss';
 import Calendar from '../Calendar';
-import './style.css';
+import styles from './styles';
 
-export default class Calendars extends Component {
+class Calendars extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,49 +27,44 @@ export default class Calendars extends Component {
 
   render() {
     const { yearOffset } = this.state;
-    const { onSelect, selectedDays } = this.props;
-    const today = moment('2017-07-10');
+    const { onSelect, selection, classes } = this.props;
+    const today = moment();
     const startfrom = moment(today).startOf('month');
     const firstMonth = moment(startfrom).add({ year: yearOffset });
-    const days = range(12).reduce((acc, i) => {
+    const firstDayOfMonths = range(12).reduce((acc, i) => {
       return [...acc, moment(firstMonth).add({ months: i })];
     }, []);
-    const lastMonth = days[days.length - 1];
+    const lastMonth = firstDayOfMonths[firstDayOfMonths.length - 1];
 
     return (
-      <div className="Calendars">
-        <div className="Calendars__header">
+      <div className={classes.calendars}>
+        <div className={classes.header}>
           <button
-            className="Calendars__button"
+            className={classes.button}
             name="previous"
             onClick={this.handleOffsetYear}
           >
             &lt;
           </button>
-          <span className="Calendars__date">
-            {firstMonth.format('MMMM YYYY')}
-          </span>
-          <button
-            className="Calendars__button Calendars__button--today"
-            onClick={this.handleToday}
-          >
-            {today.format('dddd D MMMM')}
-          </button>
-          <span className="Calendars__date">
-            {lastMonth.format('MMMM YYYY')}
-          </span>
-          <button className="Calendars__button" onClick={this.handleOffsetYear}>
+          <button className={classes.button} onClick={this.handleOffsetYear}>
             &gt;
           </button>
+          <span className={classes.date}>{firstMonth.format('MMMM YYYY')}</span>
+          -
+          <span className={classes.date}>{lastMonth.format('MMMM YYYY')}</span>
+          <button className={classes.todayButton} onClick={this.handleToday}>
+            {today.format('dddd D MMMM')}
+          </button>
         </div>
-        <div className="Calendars__content">
-          {days.map((d, i) =>
+        <div className={classes.content}>
+          {firstDayOfMonths.map((firstDay, i) =>
             <Calendar
+              className={classes.calendar}
               key={i}
-              day={d}
+              firstDay={firstDay}
               onSelect={onSelect}
               today={today}
-              selectedDays={selectedDays}
+              selection={selection}
             />,
           )}
         </div>
@@ -76,3 +72,5 @@ export default class Calendars extends Component {
     );
   }
 }
+
+export default injectSheet(styles)(Calendars);

@@ -1,12 +1,11 @@
 html {
-  background-color: #fafafa;
   box-sizing: border-box;
   font-size: 62.5%;
   height: 100%;
 }
 
 body {
-  color: #333;
+  color: #212121;
   margin: 0;
   padding: 0;
   height: 100%;

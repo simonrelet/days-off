@@ -3,10 +3,27 @@ import moment from 'moment';
 import range from 'lodash/range';
 import View from './view';
 
-function getDays(day, today, selectedDays) {
+function isHalfDayInRange(day, halfDay, selection) {
+  const { start, end } = selection;
+  const afterStart =
+    day.isSameOrAfter(start.date, 'day') &&
+    (start.halfDay === 'morning' || halfDay === 'afternoon');
+  const beforeEnd =
+    day.isSameOrBefore(end.date, 'day') &&
+    (end.halfDay === 'afternoon' || halfDay === 'morning');
+
+  return afterStart && beforeEnd;
+}
+
+function getDays(day, today, selection) {
   const days = range(day.daysInMonth()).reduce((acc, i) => {
     const d = moment(day).date(i + 1);
-    const selection = selectedDays[d.format('YYYY-MM-DD')] || {};
+    const s = selection
+      ? {
+          morning: isHalfDayInRange(d, 'morning', selection),
+          afternoon: isHalfDayInRange(d, 'afternoon', selection),
+        }
+      : {};
     return [
       ...acc,
       {
@@ -14,10 +31,7 @@ function getDays(day, today, selectedDays) {
         label: d.format('DD'),
         today: d.isSame(today, 'day'),
         disabled: d.day() === 0 || d.day() === 6,
-        selection: {
-          morning: !!selection.morning,
-          afternoon: !!selection.afternoon,
-        },
+        selection: s,
       },
     ];
   }, []);
@@ -31,13 +45,20 @@ function getWeekDays(day) {
   }));
 }
 
-export default function Calendar({ day, onSelect, today, selectedDays }) {
-  const days = getDays(day, today, selectedDays);
-  const month = day.format('MMMM');
-  const year = day.isSame(today, 'year') ? '' : day.format('YYYY');
-  const weekDays = getWeekDays(day);
+export default function Calendar({
+  firstDay,
+  onSelect,
+  today,
+  selection,
+  className,
+}) {
+  const days = getDays(firstDay, today, selection);
+  const month = firstDay.format('MMMM');
+  const year = firstDay.isSame(today, 'year') ? '' : firstDay.format('YYYY');
+  const weekDays = getWeekDays(firstDay);
   return (
     <View
+      className={className}
       days={days}
       month={month}
       year={year}

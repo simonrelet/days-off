@@ -1,17 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
 import injectSheet from 'react-jss';
-import { depths } from '../styles';
+import { depths, colors, transitionAll } from '../styles';
 
 const styles = {
   paper: {
-    background: { color: '#fff' },
+    background: { color: colors.white },
     border: { radius: '.2rem' },
-    transition: {
-      property: 'all',
-      duration: 450,
-      timingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
-    },
+    transition: transitionAll,
   },
 
   depth1: depths.level1,

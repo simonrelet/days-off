@@ -1,6 +1,7 @@
+import { colors } from '@marv/components/styles';
+
 export const menuStyles = {
   menu: {
-    backgroundColor: '#eee',
     display: 'flex',
     flexDirection: 'column',
     padding: '1rem',
@@ -9,7 +10,7 @@ export const menuStyles = {
 
 export const itemStyles = {
   item: {
-    color: '#757575',
+    color: colors.grey.c600,
     '&:not(:first-child)': {
       marginTop: '3rem',
     },
@@ -27,7 +28,7 @@ export const itemStyles = {
     borderTop: {
       width: '1px',
       style: 'solid',
-      color: '#c8c8c8',
+      color: colors.grey.c400,
     },
     marginTop: '.3rem',
     paddingTop: '.6rem',
@@ -36,10 +37,9 @@ export const itemStyles = {
     marginRight: 'auto',
   },
   value: {
-    color: '#333',
+    color: colors.grey.c900,
   },
   valueRef: {
-    color: '#9e9e9e',
     marginLeft: '.5rem',
   },
 };
