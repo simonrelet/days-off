@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import qs from 'qs';
+import fetch, { handleError } from '@marv/components/fetch';
 import View from './View';
 
 export default class Login extends Component {
@@ -20,18 +21,15 @@ export default class Login extends Component {
 
     fetch('/api/login', {
       method: 'POST',
-      credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(this.state),
     })
-      .then(res => {
-        if (res.status === 200) {
-          const next =
-            qs.parse(window.location.search.substring(1)).next || 'days-off';
-          window.location.assign(window.location.origin + '/' + next);
-        }
+      .then(() => {
+        const next =
+          qs.parse(window.location.search.substring(1)).next || 'days-off';
+        window.location.assign(window.location.origin + '/' + next);
       })
-      .catch(err => console.error(err));
+      .catch(handleError);
   };
 
   render() {
