@@ -4,7 +4,7 @@
   "author": "Simon Relet",
   "private": true,
   "description": "@marv days-off applicaion",
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:4000",
   "scripts": {
     "build": "PUBLIC_URL=/days-off react-scripts build",
     "check": "eslint src",

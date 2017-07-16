@@ -9,7 +9,7 @@
     "check": "eslint .",
     "clean": "rm -rf build",
     "format": "prettier --write --single-quote --trailing-comma all 'app/**/*.js'",
-    "start": "PORT=3001 DEVELOPMENT=true babel-node app"
+    "start": "PORT=4000 DEVELOPMENT=true babel-node app"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
