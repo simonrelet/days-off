@@ -5,36 +5,43 @@ import injectSheet from 'react-jss';
 import Calendar from '../Calendar';
 import styles from './styles';
 
+const nbCalendarToDisplay = 6;
+
 class Calendars extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      yearOffset: 0,
+      monthOffset: 0,
     };
   }
 
-  handleOffsetYear = e => {
+  handleOffsetMonth = e => {
     if (e.target.name === 'previous') {
-      this.setState(({ yearOffset }) => ({ yearOffset: yearOffset - 1 }));
+      this.setState(({ monthOffset }) => ({
+        monthOffset: monthOffset - nbCalendarToDisplay,
+      }));
     } else {
-      this.setState(({ yearOffset }) => ({ yearOffset: yearOffset + 1 }));
+      this.setState(({ monthOffset }) => ({
+        monthOffset: monthOffset + nbCalendarToDisplay,
+      }));
     }
   };
 
   handleToday = () => {
-    this.setState({ yearOffset: 0 });
+    this.setState({ monthOffset: 0 });
   };
 
   render() {
-    const { yearOffset } = this.state;
+    const { monthOffset } = this.state;
     const { onSelect, selection, classes } = this.props;
     const today = moment();
     const startfrom = moment(today).startOf('month');
-    const firstMonth = moment(startfrom).add({ year: yearOffset });
-    const firstDayOfMonths = range(12).reduce((acc, i) => {
+    const firstMonth = moment(startfrom).add({ month: monthOffset });
+    const firstDayOfMonths = range(nbCalendarToDisplay).reduce((acc, i) => {
       return [...acc, moment(firstMonth).add({ months: i })];
     }, []);
     const lastMonth = firstDayOfMonths[firstDayOfMonths.length - 1];
+    const sameYear = firstMonth.isSame(lastMonth, 'year');
 
     return (
       <div className={classes.calendars}>
@@ -42,14 +49,16 @@ class Calendars extends Component {
           <button
             className={classes.button}
             name="previous"
-            onClick={this.handleOffsetYear}
+            onClick={this.handleOffsetMonth}
           >
             &lt;
           </button>
-          <button className={classes.button} onClick={this.handleOffsetYear}>
+          <button className={classes.button} onClick={this.handleOffsetMonth}>
             &gt;
           </button>
-          <span className={classes.date}>{firstMonth.format('MMMM YYYY')}</span>
+          <span className={classes.date}>
+            {firstMonth.format(sameYear ? 'MMMM' : 'MMMM YYYY')}
+          </span>
           -
           <span className={classes.date}>{lastMonth.format('MMMM YYYY')}</span>
           <button className={classes.todayButton} onClick={this.handleToday}>

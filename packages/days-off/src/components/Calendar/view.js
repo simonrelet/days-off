@@ -2,8 +2,9 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import classnames from 'classnames';
 import { calendar, weekDay, day, halfDay } from './styles';
+import { isHalfDayInRange, halfDayKeys } from '../dateUtils';
 
-const WeekDay = injectSheet(weekDay)(function({ classes, day, index }) {
+const WeekDay = injectSheet(weekDay)(function({ classes, label, index }) {
   return (
     <div
       className={classes.weekDay}
@@ -13,7 +14,7 @@ const WeekDay = injectSheet(weekDay)(function({ classes, day, index }) {
       }}
     >
       <span>
-        {day.label}
+        {label}
       </span>
     </div>
   );
@@ -22,13 +23,15 @@ const WeekDay = injectSheet(weekDay)(function({ classes, day, index }) {
 const Day = injectSheet(day)(function({
   classes,
   day,
+  today,
+  disabled,
   position: { row, column },
 }) {
   return (
     <div
       className={classnames(classes.day, {
-        [classes.disabled]: day.disabled,
-        [classes.today]: day.today,
+        [classes.disabled]: disabled,
+        [classes.today]: day.moment.isSame(today, 'day'),
       })}
       style={{
         gridRow: `${row + 1}/${row + 2}`,
@@ -45,20 +48,21 @@ const Day = injectSheet(day)(function({
 const HalfDay = injectSheet(halfDay)(function({
   classes,
   day,
-  dayPart,
+  halfDay,
   onSelect,
+  selection,
   position: { row, column },
 }) {
   return (
     <div
       className={classnames(classes.halfDay, {
-        [classes.selected]: day.selection[dayPart],
+        [classes.selected]: isHalfDayInRange(
+          { moment: day.moment, halfDay },
+          selection,
+        ),
       })}
-      onClick={() =>
-        onSelect({
-          date: day.value.format('YYYY-MM-DD'),
-          halfDay: dayPart,
-        })}
+      onClick={e =>
+        onSelect({ moment: day.moment, halfDay }, e.shiftKey || e.metaKey)}
       style={{
         gridRow: `${row + 1}/${row + 2}`,
         gridColumn: `${column + 1}/${column + 2}`,
@@ -70,17 +74,21 @@ const HalfDay = injectSheet(halfDay)(function({
 function getItems(days) {
   let row = 1;
   return days.reduce((acc, day) => {
-    const column = day.value.weekday() * 2;
-    if (column === 0 && day.value.date() > 0) {
+    const column = day.moment.weekday() * 2;
+    if (column === 0 && day.moment.date() > 0) {
       row = row + 1;
     }
-
-    return day.disabled
-      ? [...acc, { day, position: { row, column } }]
+    const disabled = day.moment.day() === 0 || day.moment.day() === 6;
+    return disabled
+      ? [...acc, { day, disabled, position: { row, column } }]
       : [
           ...acc,
-          { day, dayPart: 'morning', position: { row, column } },
-          { day, dayPart: 'afternoon', position: { row, column: column + 1 } },
+          { day, halfDay: halfDayKeys.morning, position: { row, column } },
+          {
+            day,
+            halfDay: halfDayKeys.afternoon,
+            position: { row, column: column + 1 },
+          },
           { day, position: { row, column } },
         ];
   }, []);
@@ -91,6 +99,8 @@ function CalendarView({
   className,
   days,
   month,
+  today,
+  selection,
   year,
   weekDays,
   onSelect = () => {},
@@ -102,12 +112,19 @@ function CalendarView({
         {month} {year}
       </div>
       <div className={classes.grid}>
-        {weekDays.map((day, i) => <WeekDay key={i} day={day} index={i} />)}
+        {weekDays.map((day, i) =>
+          <WeekDay key={i} label={day.label} index={i} />,
+        )}
         {items.map(
           (item, i) =>
-            item.dayPart
-              ? <HalfDay key={i} {...item} onSelect={onSelect} />
-              : <Day key={i} {...item} />,
+            item.halfDay
+              ? <HalfDay
+                  key={i}
+                  {...item}
+                  onSelect={onSelect}
+                  selection={selection}
+                />
+              : <Day key={i} {...item} today={today} />,
         )}
       </div>
     </div>

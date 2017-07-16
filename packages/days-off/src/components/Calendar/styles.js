@@ -3,8 +3,8 @@ import { colors } from '@marv/components/styles';
 const tile = {
   alignItems: 'center',
   display: 'flex',
-  fontSize: '1.4rem',
   justifyContent: 'center',
+  userSelect: 'none',
 };
 
 export const calendar = {
@@ -21,7 +21,7 @@ export const calendar = {
   },
   grid: {
     display: 'grid',
-    gridTemplate: 'repeat(7, 2.8rem) / repeat(14, 1.4rem)',
+    gridTemplate: 'repeat(7, 3.2rem) / repeat(14, 1.6rem)',
   },
 };
 

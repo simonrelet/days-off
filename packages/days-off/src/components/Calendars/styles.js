@@ -8,9 +8,9 @@ const headerButton = {
   flex: 'none',
   fontSize: 'inherit',
   outline: 'none',
-  padding: ['1rem', '1rem'],
+  padding: '1rem',
   transition: transitionAll,
-  '&:hover': {
+  '&:hover, &:focus': {
     backgroundColor: colors.grey.c300,
   },
 };
@@ -30,6 +30,7 @@ export default {
     flex: 'none',
   },
   content: {
+    alignContent: 'flex-start',
     display: 'flex',
     flex: 1,
     flexWrap: 'wrap',
@@ -44,6 +45,6 @@ export default {
     margin: [0, '.5rem'],
   },
   calendar: {
-    margin: '2rem',
+    margin: '3rem',
   },
 };

@@ -1,69 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import range from 'lodash/range';
 import View from './view';
 
-function isHalfDayInRange(day, halfDay, selection) {
-  const { start, end } = selection;
-  const afterStart =
-    day.isSameOrAfter(start.date, 'day') &&
-    (start.halfDay === 'morning' || halfDay === 'afternoon');
-  const beforeEnd =
-    day.isSameOrBefore(end.date, 'day') &&
-    (end.halfDay === 'afternoon' || halfDay === 'morning');
+const weekDays = moment.weekdaysMin(true).map(d => ({
+  label: d.toUpperCase(),
+}));
 
-  return afterStart && beforeEnd;
+function getDays(firstDay) {
+  return range(firstDay.daysInMonth()).map(i => {
+    const d = moment(firstDay).date(i + 1);
+    return { moment: d, label: d.format('DD') };
+  });
 }
 
-function getDays(day, today, selection) {
-  const days = range(day.daysInMonth()).reduce((acc, i) => {
-    const d = moment(day).date(i + 1);
-    const s = selection
-      ? {
-          morning: isHalfDayInRange(d, 'morning', selection),
-          afternoon: isHalfDayInRange(d, 'afternoon', selection),
-        }
-      : {};
-    return [
-      ...acc,
-      {
-        value: d,
-        label: d.format('DD'),
-        today: d.isSame(today, 'day'),
-        disabled: d.day() === 0 || d.day() === 6,
-        selection: s,
-      },
-    ];
-  }, []);
+export default class Calendar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      month: '',
+      year: '',
+      days: [],
+    };
+  }
 
-  return days;
-}
+  componentWillMount() {
+    this.updateCalendar();
+  }
 
-function getWeekDays(day) {
-  return moment.weekdaysMin(true).map(d => ({
-    label: d.toUpperCase(),
-  }));
-}
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.firstDay.isSame(this.props.firstDay, 'day')) {
+      this.updateCalendar(nextProps);
+    }
+  }
 
-export default function Calendar({
-  firstDay,
-  onSelect,
-  today,
-  selection,
-  className,
-}) {
-  const days = getDays(firstDay, today, selection);
-  const month = firstDay.format('MMMM');
-  const year = firstDay.isSame(today, 'year') ? '' : firstDay.format('YYYY');
-  const weekDays = getWeekDays(firstDay);
-  return (
-    <View
-      className={className}
-      days={days}
-      month={month}
-      year={year}
-      weekDays={weekDays}
-      onSelect={onSelect}
-    />
-  );
+  updateCalendar(props) {
+    const { firstDay } = props || this.props;
+    this.setState({
+      month: firstDay.format('MMMM'),
+      year: firstDay.format('YYYY'),
+      days: getDays(firstDay),
+    });
+  }
+
+  render() {
+    const { onSelect, firstDay, className, today, selection } = this.props;
+    const { days, month } = this.state;
+    const year = firstDay.isSame(today, 'year') ? '' : this.state.year;
+    return (
+      <View
+        className={className}
+        days={days}
+        month={month}
+        year={year}
+        today={today}
+        selection={selection}
+        weekDays={weekDays}
+        onSelect={onSelect}
+      />
+    );
+  }
 }
