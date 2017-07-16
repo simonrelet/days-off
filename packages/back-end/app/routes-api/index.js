@@ -14,7 +14,7 @@ function ensureLoggedIn(req, res, next) {
 
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
-  if (username && password) {
+  if (username && password && db.getUser(username)) {
     res.cookie('id_token', `TOKEN-FOR-${username}`);
   } else {
     res.status(400).json({
