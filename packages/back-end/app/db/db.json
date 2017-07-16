@@ -15,12 +15,12 @@
       "credits": {
         "total": {
           "rtt": 20,
-          "dayedLeaves": 10,
+          "payedLeaves": 10,
           "sick": 1
         },
         "used": {
           "rtt": 0,
-          "dayedLeaves": 0,
+          "payedLeaves": 0,
           "sick": 0
         }
       }
