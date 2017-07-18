@@ -5,9 +5,13 @@ const tile = {
   display: 'flex',
   justifyContent: 'center',
   userSelect: 'none',
+  fontSize: '1.4rem',
 };
 
-export const calendar = {
+const tileSize = 28;
+const tileSizeREM = tileSize / 10;
+
+const calendar = {
   calendar: {
     alignItems: 'center',
     display: 'flex',
@@ -21,22 +25,21 @@ export const calendar = {
   },
   grid: {
     display: 'grid',
-    gridTemplate: 'repeat(7, 3.2rem) / repeat(14, 1.6rem)',
+    gridTemplate: `repeat(7, ${tileSizeREM}rem) / repeat(7, ${tileSizeREM}rem)`,
   },
 };
 
-export const weekDay = {
+const weekDay = {
   weekDay: {
     ...tile,
     color: colors.grey.c500,
   },
 };
 
-export const day = {
+const day = {
   day: {
     ...tile,
     cursor: 'pointer',
-    pointerEvents: 'none',
   },
   disabled: {
     cursor: 'initial',
@@ -49,18 +52,18 @@ export const day = {
   },
 };
 
-export const halfDay = {
-  halfDay: {
-    ...tile,
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: colors.grey.c200,
-    },
-  },
-  selected: {
-    backgroundColor: colors.blue.c100,
-    '&:hover': {
-      backgroundColor: colors.blue.c200,
-    },
-  },
+function getHalfDayColor(selected, hover) {
+  if (selected) {
+    return hover ? colors.blue.c200 : colors.blue.c100;
+  }
+  return hover ? colors.grey.c200 : 'transparent';
+}
+
+export default {
+  tileSize,
+  tileSizeREM,
+  calendar,
+  weekDay,
+  day,
+  getHalfDayColor,
 };
