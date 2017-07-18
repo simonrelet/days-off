@@ -5,7 +5,7 @@ import injectSheet from 'react-jss';
 import Calendar from '../Calendar';
 import styles from './styles';
 
-const nbCalendarToDisplay = 6;
+const nbCalendarToDisplay = 12;
 
 class Calendars extends Component {
   constructor(props) {

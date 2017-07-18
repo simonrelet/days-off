@@ -10,7 +10,7 @@ const headerButton = {
   outline: 'none',
   padding: '1rem',
   transition: transitionAll,
-  '&:hover, &:focus': {
+  '&:hover': {
     backgroundColor: colors.grey.c300,
   },
 };
