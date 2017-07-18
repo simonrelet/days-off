@@ -113,6 +113,7 @@ function Menu({ className, classes, selection, user, onCancelSelection }) {
     <div className={classnames(classes.menu, className)}>
       {user && <Credits user={user} />}
       {selection &&
+        user &&
         <CurrentSelection
           selection={selection}
           user={user}
